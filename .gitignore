@@ -45,3 +45,6 @@ proguard-project.txt
 tmp
 *.tgz
 /dist/
+
+set-key.sh
+

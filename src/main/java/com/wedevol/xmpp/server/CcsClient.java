@@ -46,7 +46,7 @@ public class CcsClient implements StanzaListener {
 	private XMPPTCPConnection connection;
 	private String mApiKey = null;
 	private String mProjectId = null;
-	private boolean mDebuggable = false;
+	private boolean mDebuggable = true;
 	private String fcmServerUsername = null;
 
 	public static CcsClient getInstance() {
@@ -97,7 +97,7 @@ public class CcsClient implements StanzaListener {
 		config.setServiceName("FCM XMPP Client Connection Server");
 		config.setHost(Util.FCM_SERVER);
 		config.setPort(Util.FCM_PORT);
-		config.setSecurityMode(SecurityMode.ifpossible);
+		config.setSecurityMode(SecurityMode.disabled);
 		config.setSendPresence(false);
 		config.setSocketFactory(SSLSocketFactory.getDefault());
 		// Launch a window with info about packets sent and received
@@ -170,7 +170,7 @@ public class CcsClient implements StanzaListener {
 		connection.addPacketInterceptor(new StanzaListener() {
 			@Override
 			public void processPacket(Stanza stanza) throws NotConnectedException {
-				logger.log(Level.INFO, "Sent: {}", stanza.toXML());
+				logger.log(Level.INFO, "Sent: {0}", stanza.toXML());
 			}
 		}, ForEveryStanza.INSTANCE);
 
